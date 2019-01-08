@@ -1,4 +1,4 @@
-#Glossary for Western Music
+# Glossary for Western Music
 ##Basic Element
 
 ##Medieval Music
