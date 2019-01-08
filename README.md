@@ -1,42 +1,42 @@
-#Glossary for Western Music
-##Basic Element
+# Glossary for Western Music
+## Basic Element
 
-##Medieval Music
+## Medieval Music
 Pérotin - <i>Viderunt Omnes</i> (1198)
 
 - Plainchant: plainsong, a single, unaccompanied melodic line. 
 	- Gregorian Chant: recitatives and free melodies.
 
 
-##Renaissance Music
+## Renaissance Music
 
 Josquin Desprez - <i>Ave Maria</i> (c. 1475)
 *c. - circa, means about.*
 
 
-##Early Baroque Music
+## Early Baroque Music
 Monteverdi - L'Orfeo (1607)
 
-####Genre
+#### Genre
 - Aria: accompanied song for a solo voice.
 - Arisoso: vocal music that is more melodic than recitative.
 - Recitative: a style of singing with instrumental accompaniment that
 imitates the natural inflections of speech.
 
-####Content
+#### Content
 - Ritornello: a recurring instrumental passage. It is an orchestral interlude between arias, scenes, or acts.
 
 
-##Late Baroque Music
+## Late Baroque Music
 J.S. Bach - Fugue (genre, one type of imitative polyphony)
 
 Handel - Massiah (1741)
 
-####Genre
+#### Genre
 - Da Capo Aria: aria with A-B-A structure.
 - Oritorio: long narrative without characters.
 
-####Content
+#### Content
 - Word Painting: depicts image through melody.
 - Secco: single singer without instrumental accompaniment.
 - Syllabic: notes follow syllable.
@@ -46,7 +46,7 @@ Handel - Massiah (1741)
 
 Puccini - La Bohème (1896)
 
-##Classical Music
+## Classical Music
 Mozart - The Marriage of Figaro (1786)
 
 Mozart - Sonata (genra)
@@ -54,14 +54,14 @@ Mozart - Sonata (genra)
 Beethoven - Symphony No. 9 (1824)
 *Ode to Joy* is in this symphony.
 
-####Genre
+#### Genre
 - Symphony: large orchestral work.
 - (Piano) Concerto: large ensemble with (piano) solo.
 - Sonata: multi-movement works for solo instrument and piano, or piano alone.
 - Scherzo: a teasing, playful composition.
 - Trio: instrumentation or vocalization by three different sounds.
 
-####Content
+#### Content
 - Bridge: the change mode or key.
 - Exposition: the initial representation of the thematic material.
 - Development: communication between different ideas.
@@ -71,19 +71,19 @@ Beethoven - Symphony No. 9 (1824)
 
 
 
-##Romantic Music
+## Romantic Music
 Berlioz - <i>Symphonie Fantastique</i> (1830)
 Franz Schubert - <i>Erlkönig</i> (1815)
 Clara Schumann - Piano Trio op. 17, movement 1 (1846)
 Chopin - Nocturne in E-flat major for piano Op. 9 No. 2 (1830-2)
 
-####Genre
+#### Genre
 - Fugato: a less strict fugue.
 - Lied: lyrical poem accompanied by piano. E.g. <i>Erlkönig</i>.
 - Character piece: piano music based on a single idea or program.
 
 
-####Content
+#### Content
 - Chromaticism: all notes in half-step; no tonic tone.
 - Rubato: push as well as pull; mixed with fast and slow, while keeping the beats.
 - Tremolo: rapidly playing the same note.
@@ -92,13 +92,13 @@ Chopin - Nocturne in E-flat major for piano Op. 9 No. 2 (1830-2)
 - Coloratura: italian word for coloring. It is the elaborate ornamentation of a melody.
 
 
-##Twentieth and Twenty-first Century Music
+## Twentieth and Twenty-first Century Music
 
-###Impressionism and early modernism
+### Impressionism and early modernism
 Debussy - <i>Prélude à l'après-midi d'un faune</i> (1894)
 
 Igor Stravinsky The Rite of Spring (1913)
 
-####Content
+#### Content
 - Ostinato: persistently recurrent melody.
 - Sprechstimme: pitchless sound.
