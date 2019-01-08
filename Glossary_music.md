@@ -101,3 +101,4 @@ Igor Stravinsky The Rite of Spring (1913)
 
 ####Content
 - Ostinato: persistently recurrent melody.
+- Sprechstimme: pitchless sound.
