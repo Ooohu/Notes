@@ -101,3 +101,42 @@ Igor Stravinsky The Rite of Spring (1913)
 #### Content
 - Ostinato: persistently recurrent melody.
 - Sprechstimme: pitchless sound.
+- Cross-accent: irregular stress on beats.
+
+### Expressionism
+Arnold Schoenberg - <i>Pierrot Lunaire</i> (1912), No.1 'Mondestrunken', No.8 'Nacht'
+
+Ruth Crawford Seeger - String QUartet 1931
+
+#### Content
+- Atonality: composition does not ground on key
+- 12-tone composition: three deviations of arrangement of notes based on one melody, inverse, mirror, and both.
+
+### American Composers:
+William Grant Still - Afro-American Symphony
+
+Aaron Copland - Appalachian Spring
+
+John Cage - Sonatas and Interludes
+
+Steve Reich - It's Gonna Rain
+
+Steve Reich - Tehillim
+
+### Content
+- Canon: repeated melodies.
+
+### Jazz
+Louis Armstrong - West End Blues
+
+Duke Ellington - It Don't Mean a Thing
+
+Charlie Parker - Ornithology
+
+Oliveros, Pauline - Sonic Meditations
+
+### Content
+- Scattering: singer imitates the instrument.
+- Backing: off the stress by purpose.
+- Improvised: creative in contents but with fix introduction and ending.
+- 
