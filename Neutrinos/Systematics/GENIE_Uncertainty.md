@@ -1,11 +1,29 @@
-# Genie Uncertainty from ubcode to sbncode 
+# Genie Uncertainty from ubcode to sbncode
 
 GENIE uncertainty is to describe the uncertainties for neutrino interaction model.
 
 Current version v3.0.6 G18_10a_02_11a (may 2020 [MICROBOONE1.NOTE1.10741.PUB](https://microboone.fnal.gov/wp1.content/uploads/MICROBOONE1.NOTE1.10741.PUB.pdf))
 
+### versions
+v3.0.4 was used to generate MciroBooNE samples
+- SplineWeightCalc is used to fix a bug in this version. Problem solved if sample is generated using v3.0.6
+
+v3.0.6 is currently used by MicroBooNE (Aug. 2021); the MicroBooNE version has something extra:
+- Nieves CC MEC; they are not officially knobs in this version.
+
+
+v3.2 will contains the above updates.
+
+
 
 ## Context
+[GENIE](http://www.genie-mc.org/)
+ [Github](https://github.com/GENIE-MC)
+ [Release](https://github.com/GENIE-MC/Generator/releases)
+ [Manual](https://genie-docdb.pp.rl.ac.uk/cgi-bin/ShowDocument?docid=2)
+
+
+
 MiniBooNE data prompted theoretical development.
 
 GENIE v2 is for high energy, e.g. the relativistic Fermi gas nuclear model and Llewellyn1.Smith QE model.
@@ -118,12 +136,114 @@ Two methods:
 1. NormCCCOH
 ---
 
-
-
-
-
-
-
-
-
 55 items in total.
+
+11 more
+- RPA_CCQE
+- XSecShape_CCMEC
+- AxFFCCQEshape
+- VecFFCCQEshape
+- DecayAngMEC
+- Theta_Delta2Npi
+- ThetaDelta2NRad
+- NormCCCOH
+- NormNCCOH
+- TunedCentralValue
+- RootinoFix
+
+## Files Structure
+
+### The Code
+
+`fParameterap<EventWeightPrameter, vector<float>>`, of which
+```
+Class EventWeightPrameter{
+  string name;
+  float fMean;//Gaussian mean
+  float fWidth;//Gaussian sigma
+  size_t fCovIndex;
+}
+```
+
+#### larsim version, updated Mar. 2021
+Exceptions `UNIMPLEMENTED_GENIE_KNOBS` and `INCOMPATIBLE_GENIE_KNOBS`.
+
+`Configure()` and `GetWeight()` are the function will be called in sequence.
+
+##### Configure()
+The function of `Configure()`
+- Print out log setting
+- Save knobs to a map: `map<genie::rew::GSyst_t, double> gsyst_to_cv_map`
+- Set Calculator configuration
+  - Check if all knobs are loaded
+  - Set # of universes
+  - Set sigma of each knob
+  - Pick out knobs with special names
+- Set knob values; they are modified via a sigma values coming from the calculation from one of the 3 modes.
+
+The kth knob receives the kth parsigmas
+knob_name{
+  knob: ["A","B", "C"]
+  sigma: [1,2,3]
+}
+
+###### SetupWeightCalculators()
+`rwght`
+
+`modes_to_use`
+
+###### Key functions
+Grab the knob by name `<genie::rew::GSys_t&> k = genie::rew::GSyst::FromString(<string>)`
+
+###### Exceptions
+Unacceptable errors that gives an error
+- problematic `parsigmas`
+- duplicated knobs
+- incompatable knobs (done in `CheckForIncompatibleSystematics()`)
+- unknown knobs (done in `invalid_knob_name()`)
+
+The function of `GetWeight()` should be the same;
+
+The knob is the genie object: `genie::rew::GSyst_t`; they are called at the following lines
+- line 290, temp_knob; (tmp)
+  - run `valid_knob_name` on it, check if this knob obtained by name exited.
+  - problematic: UNIMPLEMENTED_GENIE_KNOBS are listed, but no implementation.
+  - problematic: the knob is `kNullSystematic` or `kNTwkDials`;
+- line 362, **<vector> knobs_to_use**;
+  - `<Gsyst_t, double> gsyst_to_cv_map`
+  - followed with a set of sigmas
+- line 373, **<vector> all_knob_vec**;
+  - `knobs_to_use` + cv_knob
+- line 375, cv_knob; (tmp)
+- line 429, current_knob; (tmp)
+- line 484, cv_knob; (tmp)
+- line 516, knob; (tmp)
+
+
+
+#### Port it to sbncode from Larsim
+1. Treat cv_knob as normal knob.
+
+### FHiCL
+
+Larsim: `genie_reweight_geneic.fcl` is the same as
+sbncode: `run_eventweight_sbn.fcl`
+
+#### modes
+larsim: multisim, pm1sigma, minmax, central_value, default
+sbncode: multisim, pmNsigma, fixed, (no default)
+**mode: minmax includes pm1sigma**
+
+#### genie_central_values
+Apply to everything but minmax
+
+#### Elements
+`genie_central_values` contains a set of definitions, each of them defines the setting of GENIE reweight knobs. The value of each definition has the unit of $1\sigma$ uncertainty; this value will vary the central value of the knob.
+
+### Genie Library
+`<genie::rew::GSystSet>` is the knob in Genie.
+
+A knob can be called via `<genie::rew::GSystSet> = genie::rew::GSyst::FromString( <std::string> )`
+
+The name of the knob can be called via
+`<std::string> = genie::rew::GSyst::AsString( <genie::rew::GSystSet> )`

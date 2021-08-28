@@ -25,7 +25,7 @@ source localProducts*/setup
 5. Get the actual software under `srcs/` directory
 ```
 cd srcs
-mrb g <package name> 
+mrb g <package name>
 # or try this line
 mrb gitCheckout -t <version> <package name>
 ```
@@ -43,7 +43,11 @@ after `mrb gitCheckout -t <version> <package name>`, use `mrb uc` to update the 
 See what versions are available
 `ups list -aK+ <uboonecode/sbndcode>`
 
+See what is active
+`ups active`
+
 ## FHiCL Files
+Fermilab Hierarchical Configuration Language (FHiCL) files
 
 [uboone guide](https://cdcvs.fnal.gov/redmine/projects/uboonecode/wiki/Guide_to_Using_FCL_files_in_MicroBooNE)
 [sbnd guide](https://cdcvs.fnal.gov/redmine/projects/sbndcode/wiki/Job_configurations)
@@ -87,7 +91,7 @@ Generate events using the command
 
 #### Weight Events
 
-Weight events using 
+Weight events using
 `lar -c <name>.fcl <inputroot>.root`
 
 
@@ -98,8 +102,8 @@ You need:
 - XML for configuration `*.xml`
 - Your version of code in a tarball `*.tar`
     - Build your code and use `make_tar_uboone.sh` local.tar
-    - (at sbnd) use `make_tar_sbnd.sh -d <output.tar.gz`
-- List of input roots `*.txt` 
+    - (at sbnd) use `make_tar_sbnd.sh <output.tar.gz>`
+- List of input roots `*.txt`
 
 ### Online Monitor
 [My Profile](https://fifemon.fnal.gov/monitor/d/000000116/user-batch-details?orgId=1&var-cluster=fifebatch&var-user=klin)
@@ -118,6 +122,11 @@ Check status
 Remove job with ID
 `jobsub_rm --jobid=<id>`
 
+Get logs
+`jobsub_fetchlog --jobid <cluster ID#>@<host address>`
+
+Example: `jobsub_fetchlog --jobid 47928378@jobsub02.fnal.gov`
+
 ---
 ## SBNSoftware
 [SBNwiki](https://sbnsoftware.github.io/)
@@ -128,10 +137,10 @@ Remove job with ID
 ### From `mrbsetenv` in `build*/` directory
 ```
 ----------- check this block for errors -----------------------
-ERROR: 
+ERROR:
 ERROR: directories not specified
 ERROR: USAGE: setup_products <input-directory> <build-directory>
-ERROR: 
+ERROR:
 ----------------------------------------------------------------
 ```
 Solution:`source local*/setup`
