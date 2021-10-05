@@ -2,7 +2,7 @@
 
 GENIE uncertainty is to describe the uncertainties for neutrino interaction model.
 
-Current version v3.0.6 G18_10a_02_11a (may 2020 [MICROBOONE1.NOTE1.10741.PUB](https://microboone.fnal.gov/wp1.content/uploads/MICROBOONE1.NOTE1.10741.PUB.pdf))
+Current version v3.0.6 G18_10a_02_11a (may 2020 [MICROBOONE.NOTE1.10741.PUB](https://microboone.fnal.gov/wp1.content/uploads/MICROBOONE.NOTE.1074.PUB.pdf)
 
 ### versions
 v3.0.4 was used to generate MciroBooNE samples
@@ -247,3 +247,11 @@ A knob can be called via `<genie::rew::GSystSet> = genie::rew::GSyst::FromString
 
 The name of the knob can be called via
 `<std::string> = genie::rew::GSyst::AsString( <genie::rew::GSystSet> )`
+
+
+### Problems
+
+Genie [crash](https://internal.dunescience.org/doxygen/namespacegenie_1_1utils_1_1kinematics.html#ab4b961139e97138c17d4b9ac83af227d) from
+```
+1630171663 FATAL KineLimits : [s] <Jacobian (258)> : *** Can not compute Jacobian for transforming: <QELEvGen> --> <{Q2}|
+```
