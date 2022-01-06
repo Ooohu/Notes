@@ -1,4 +1,18 @@
-# Flux Uncertainty from ubcode to sbncode 
+# Work Flux Uncertainty from ubcode to sbncode 
+###### tags: `fermilab` `flux` `sbncode` `microboone` `sbnd`
+
+## Issues Nov. 2021
+- Update FhiCL in fluxreader
+- BeamData directory is not found? Still need manually link via ` export FW_SEARCH_PATH=/cvmfs/uboone.opensciencegrid.org/products/uboonedata/v08_00_00_54/:$FW_SEARCH_PATH`
+
+    Solution: 
+    - Add `sbndata v10_00` in product_deps
+    - Add `find_ups_product(sbndata)` in CMakeLists.txt
+    - Update address `"beamData/.."` to `"v01_00/beamData/.."`
+    
+- Change label names in the driver script in `App/`
+
+## DONE
 https://docs.google.com/spreadsheets/d/1myFci35aAzcH0PwNkW7hqrsRf6fbHWZhmkR3-DTOKho/edit#gid=1351307553
 
 https://docs.google.com/presentation/d/10RRXxNe5WfZRbItJ8FeHvjWePwYtA8wY0Y4dPxCKTWk/edit#slide=id.ge3557c7aed_0_7
