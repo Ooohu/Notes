@@ -1,8 +1,10 @@
 # Genie Uncertainty from ubcode to sbncode
 
+###### tags: `fermilab` `genie` `sbncode` `microboone` `sbncode` `sbnd`
+
 GENIE uncertainty is to describe the uncertainties for neutrino interaction model.
 
-Current version v3.0.6 G18_10a_02_11a (may 2020 [MICROBOONE.NOTE1.10741.PUB](https://microboone.fnal.gov/wp1.content/uploads/MICROBOONE.NOTE.1074.PUB.pdf)
+Current version v3.0.6 G18_10a_02_11a (may 2020 [MICROBOONE-NOTE-1074-PUB](http://microboone.fnal.gov/wp-content/uploads/MICROBOONE-NOTE-1074-PUB.pdf)
 
 ### versions
 v3.0.4 was used to generate MciroBooNE samples
@@ -12,7 +14,7 @@ v3.0.6 is currently used by MicroBooNE (Aug. 2021); the MicroBooNE version has s
 - Nieves CC MEC; they are not officially knobs in this version.
 
 
-v3.2 will contains the above updates.
+v3.2 will contains the above updates. It is out Mar. 11 2022
 
 
 
@@ -21,7 +23,6 @@ v3.2 will contains the above updates.
  [Github](https://github.com/GENIE-MC)
  [Release](https://github.com/GENIE-MC/Generator/releases)
  [Manual](https://genie-docdb.pp.rl.ac.uk/cgi-bin/ShowDocument?docid=2)
-
 
 
 MiniBooNE data prompted theoretical development.
@@ -48,6 +49,7 @@ Two methods:
 
 
 ### Modified parameters
+See [summary](https://docs.google.com/spreadsheets/d/1G3dgVru-o4cUEHRWfnCUixhXGmjGPob1K5f--3GEcHc/edit#gid=0)
 1. [CCQE](#CCQE) $\times$ 5
 2. [MEC](#MEC) $\times$ 5
 3. [RES](#RES) $\times$ 8
@@ -209,22 +211,33 @@ The knob is the genie object: `genie::rew::GSyst_t`; they are called at the foll
   - run `valid_knob_name` on it, check if this knob obtained by name exited.
   - problematic: UNIMPLEMENTED_GENIE_KNOBS are listed, but no implementation.
   - problematic: the knob is `kNullSystematic` or `kNTwkDials`;
-- line 362, **<vector> knobs_to_use**;
+- line 362, **\<vector> knobs_to_use**;
   - `<Gsyst_t, double> gsyst_to_cv_map`
   - followed with a set of sigmas
-- line 373, **<vector> all_knob_vec**;
+- line 373, **\<vector> all_knob_vec**;
   - `knobs_to_use` + cv_knob
 - line 375, cv_knob; (tmp)
 - line 429, current_knob; (tmp)
 - line 484, cv_knob; (tmp)
 - line 516, knob; (tmp)
 
+#### What happens to `reweightVector`?
+`std::vector< genie::rew::GReWeight > reweightVector;`
+1. resized to # universes
+2. SetupWeightCalculators of each element.
+3. For each element:
+    - the `*.Systematics()` function gives `genie::rew::GSystSet& syst`
+    - of each `knob`
+        - set values of the systematics `syst.Set(<genie::rew::GSyst_t> knob, value)`
+    - Reconfigure `rwght`, next element.
+4. Done!
 
+Each knob calculate weights based on (GENIE event info, knob setup)
 
-#### Port it to sbncode from Larsim
+### Port it to sbncode from Larsim
 1. Treat cv_knob as normal knob.
 
-### FHiCL
+#### FHiCL
 
 Larsim: `genie_reweight_geneic.fcl` is the same as
 sbncode: `run_eventweight_sbn.fcl`
@@ -249,9 +262,40 @@ The name of the knob can be called via
 `<std::string> = genie::rew::GSyst::AsString( <genie::rew::GSystSet> )`
 
 
-### Problems
+## Problems
 
 Genie [crash](https://internal.dunescience.org/doxygen/namespacegenie_1_1utils_1_1kinematics.html#ab4b961139e97138c17d4b9ac83af227d) from
 ```
 1630171663 FATAL KineLimits : [s] <Jacobian (258)> : *** Can not compute Jacobian for transforming: <QELEvGen> --> <{Q2}|
 ```
+
+When using `rwght.rwght.Reconfigure()`, we have
+```
+1638510696 FATAL ReW : [n] <GReWeightINukeParams.cxx::AddCushionTerms (583)> : There must be at least one cushion term (0 were set)
+```
+
+
+## Outlooks
+e4ν collaboration, a collaboration in writing generators?
+
+
+
+
+
+
+## Improvements?
+
+```mermaid
+graph TD
+    A[Random # for multisim]-->K[Knob Value];
+    B[Knob Sigma]-->K;
+    K-->U[Universe];
+    U--s-->U;
+
+```
+(knobs loop){
+  (rwght in each universes){rwght.SetupWeightCalc}
+  (rwght in each universes){rwght.ApplyKnobValues(random#)}
+  rwght.Reconfigure;
+}
+
